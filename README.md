@@ -64,7 +64,14 @@ python skill/mc-modpack-master/scripts/mc_version_check.py \
 
 ### 作为专家包安装
 
-`expert/mc-modpack-expert/` 是 WorkBuddy 专家包格式（含 `plugin.json`、Agent MD、头像、随包技能）。
+`doubao/                          豆包 / 扣子交付包（人设 + 知识库 + 校验清单）
+├── 01-人设提示词.md
+├── 02-知识库/                   5 份可直接上传的文档
+├── 03-示例对话.md
+├── 04-工具包/scripts/           给用户本地执行
+└── 05-验收清单.md
+
+expert/mc-modpack-expert/` 是 WorkBuddy 专家包格式（含 `plugin.json`、Agent MD、头像、随包技能）。
 
 ```bash
 # 放到专家市场目录后注册
