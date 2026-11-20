@@ -18,6 +18,13 @@
 """
 import sys
 
+# 跨平台输出：Windows 控制台默认 cp1252/gbk，打印中文会 UnicodeEncodeError
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # ---- 被测函数（与 mc_audit.py / mc_version_check.py 保持同源实现）----
 
 POW2 = lambda n: n > 0 and (n & (n - 1)) == 0

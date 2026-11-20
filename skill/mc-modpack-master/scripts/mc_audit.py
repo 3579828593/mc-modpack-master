@@ -3,9 +3,9 @@
 """mc_audit —— Minecraft 整合包只读审计
 
 用法:
-    python mc_audit.py --instance "<实例目录>"
+    python mc_audit.py --instance "D:/.minecraft/versions/某整合包"
     python mc_audit.py --instance ... --html            # 额外输出 HTML 报告
-    python mc_audit.py --instance ... --vanilla "<原版 jar 路径>"
+    python mc_audit.py --instance ... --vanilla "D:/.minecraft/versions/1.21.1/1.21.1.jar"
 
 设计约束:
     1. 只读。除报告文件外不改动任何游戏文件。
@@ -23,6 +23,13 @@ import sys
 import time
 import zipfile
 from pathlib import Path
+
+# 跨平台输出：Windows 控制台默认 cp1252/gbk，打印中文会 UnicodeEncodeError
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 # ---------------------------------------------------------------- 常量
 

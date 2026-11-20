@@ -19,7 +19,8 @@ agent_created: true
 ## 第一步：定位实例
 
 ```bash
-# 版本隔离实例通常在启动器的 versions 目录下
+# PCL / HMCL 的版本隔离实例通常在这里
+ls -d "D:/.minecraft/versions/"*/ 2>/dev/null
 ls -d "$APPDATA/.minecraft/versions/"*/ 2>/dev/null
 ```
 
@@ -29,7 +30,7 @@ ls -d "$APPDATA/.minecraft/versions/"*/ 2>/dev/null
 ## 第二步：跑审计脚本
 
 ```bash
-python scripts/mc_audit.py --instance "<实例目录>"
+python scripts/mc_audit.py --instance "D:/.minecraft/versions/林与风1.2"
 ```
 
 输出分级结论（critical / warn / info）+ `audit_<stamp>.json`。加 `--html` 出可读报告。

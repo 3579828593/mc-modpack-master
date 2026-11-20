@@ -26,6 +26,13 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+# 跨平台输出：Windows 控制台默认 cp1252/gbk，打印中文会 UnicodeEncodeError
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 UA = {"User-Agent": "mc-modpack-master/1.0 (audit)"}
 API = "https://api.modrinth.com/v2"
 
