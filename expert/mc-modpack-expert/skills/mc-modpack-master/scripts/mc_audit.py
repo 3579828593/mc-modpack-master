@@ -3,9 +3,9 @@
 """mc_audit —— Minecraft 整合包只读审计
 
 用法:
-    python mc_audit.py --instance "D:/.minecraft/versions/某整合包"
+    python mc_audit.py --instance "<实例目录>"
     python mc_audit.py --instance ... --html            # 额外输出 HTML 报告
-    python mc_audit.py --instance ... --vanilla "D:/.minecraft/versions/1.21.1/1.21.1.jar"
+    python mc_audit.py --instance ... --vanilla "<原版 jar 路径>"
 
 设计约束:
     1. 只读。除报告文件外不改动任何游戏文件。
