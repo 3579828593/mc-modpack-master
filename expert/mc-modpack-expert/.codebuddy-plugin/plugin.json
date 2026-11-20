@@ -1,0 +1,63 @@
+{
+  "name": "mc-modpack-expert",
+  "version": "1.3.0",
+  "description": "Evidence-based Minecraft modpack diagnostics: mod conflicts, resource pack chains, animation stacks, lighting gaps and performance bottlenecks, with minimal necessary fixes.",
+  "author": {
+    "name": "破甲"
+  },
+  "agents": [
+    "./agents/mc-modpack-expert.md"
+  ],
+  "skills": [
+    "./skills/mc-modpack-master"
+  ],
+  "expertType": "agent",
+  "agentName": "mc-modpack-expert",
+  "displayName": {
+    "en": "Anvil",
+    "zh": "铁砧"
+  },
+  "profession": {
+    "en": "Minecraft Modpack Engineer",
+    "zh": "Minecraft 整合包工程师"
+  },
+  "displayDescription": {
+    "en": "Diagnoses Minecraft modpacks with evidence chains: mod conflicts, resource chain breaks, animation and lighting failures, performance bottlenecks, minimal fixes.",
+    "zh": "以证据链排查整合包故障：模组冲突、材质链断裂、动画光照失效与性能瓶颈，给最小必要修复。"
+  },
+  "avatar": "avatars/expert.jpg",
+  "categoryId": "03-GameSpatial",
+  "defaultInitPrompt": {
+    "zh": "审计我的整合包，按优先级列出问题和修复方案",
+    "en": "Audit my modpack and list issues with fixes by priority"
+  },
+  "plugin": "mc-modpack-expert",
+  "tags": [
+    {
+      "en": "Mod conflict diagnosis",
+      "zh": "模组冲突排查"
+    },
+    {
+      "en": "Textures & shaders",
+      "zh": "材质与光影"
+    },
+    {
+      "en": "Performance tuning",
+      "zh": "性能调优"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Audit my modpack and list issues with fixes by priority",
+      "zh": "审计我的整合包，按优先级列出问题和修复方案"
+    },
+    {
+      "en": "The game crashes on startup, find the mod causing it",
+      "zh": "启动崩溃了，帮我定位是哪个模组导致的"
+    },
+    {
+      "en": "Blurry textures and missing animations, find the cause",
+      "zh": "画面发糊、动作不显示，帮我找出原因"
+    }
+  ]
+}

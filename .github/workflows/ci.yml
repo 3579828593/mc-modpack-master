@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test (${{ matrix.os }} / py${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: 规则断言（27 条）
+        run: python skill/mc-modpack-master/scripts/selftest.py
+
+      - name: 专家包契约验收（8 项）
+        run: python expert/mc-modpack-expert/tools/verify_capability.py expert/mc-modpack-expert
+
+      - name: 全量语法编译
+        run: python -m compileall -q skill expert
+
+  sync:
+    name: 两份技能副本必须一致
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: diff skill/ 与 expert/skills/
+        run: |
+          diff -r skill/mc-modpack-master expert/mc-modpack-expert/skills/mc-modpack-master \
+            || { echo "::error::expert/ 内的技能副本与 skill/ 不一致，请同步后再提交"; exit 1; }
+
+  hygiene:
+    name: 仓库卫生
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 禁止提交个人绝对路径
+        run: |
+          if grep -rnE '/Users/[A-Za-z0-9_.-]+|[A-Z]:[\/](Users|\.minecraft)' \
+               --include='*.md' --include='*.py' --include='*.json' . ; then
+            echo "::error::发现个人绝对路径，请改用占位符"
+            exit 1
+          fi
+          echo "OK: 无个人绝对路径"
+      - name: 禁止提交 __pycache__
+        run: |
+          if find . -name '__pycache__' -o -name '*.pyc' | grep -q .; then
+            echo "::error::存在 __pycache__ 或 .pyc"
+            exit 1
+          fi
+          echo "OK: 无编译缓存"

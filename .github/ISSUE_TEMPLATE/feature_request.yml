@@ -1,0 +1,31 @@
+name: 新增检查项 / 判据
+description: 提议一类新的可自动判定的问题，或补一条故障判据
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 症状
+      description: 用户会怎么描述这个现象
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 判据与验证方式
+      description: 为什么是这个原因？怎么用命令或代码证明？没实测过的请标注「待验证」
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: 最小介入的修复
+      description: 改配置 / 换模组 / 打补丁 / 换整套，优先给最低成本的那个
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: 合规检查
+      options:
+        - label: 该判据已在至少两个不同实例上验证（或已标注「待验证」）
+        - label: 愿意补充 selftest.py 用例

@@ -1,0 +1,41 @@
+name: 报告问题
+description: 审计结论不对、脚本报错、或某条判据与你的实测不符
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请先跑一遍 `python skill/mc-modpack-master/scripts/selftest.py`，
+        确认不是本地环境问题。**只贴"游戏崩了"的截图无法定位。**
+  - type: input
+    id: env
+    attributes:
+      label: 游戏环境
+      description: MC 版本 / 加载器与版本 / 模组数量
+      placeholder: "1.21.1 / Fabric 0.19.5 / 158 个模组"
+    validations:
+      required: true
+  - type: textarea
+    id: expect
+    attributes:
+      label: 预期与实际
+      description: 审计输出说了什么，你实测发现什么
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据
+      description: 日志原始行、审计 JSON 摘要、文件路径
+      render: shell
+    validations:
+      required: true
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 已做的排查
+      options:
+        - label: 已运行 selftest.py
+        - label: 已附日志原始行（非截图）
+        - label: 已说明验证过什么、排除了什么
